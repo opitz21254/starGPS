@@ -98,6 +98,14 @@
     --interactive-secondary-bg-color: var(--fluid-navy-opacity-3);
 
     --icon-color: #001e00;
+
+    /* Gradient tokens from the signup capture (theme block, line 5317).
+       --gradient-white-50 is a 50%-white layer stacked on top of the green
+       gradients to soften them, same trick the role cards use. */
+    --gradient-white-50: linear-gradient(0deg, hsla(0, 0%, 100%, .5), hsla(0, 0%, 100%, .5));
+    --gradient-lime-green: linear-gradient(90deg, #dff69b, #95e79b 50%, #a9f9b2);
+    --gradient-lime-green-diagonal: linear-gradient(158deg, #dff69b, #95e79b 50%, #80de8e);
+    --gradient-green-light: linear-gradient(158deg, #bdef9b, #afec9b);
 }
 
 @media (max-width:699.98px) {
@@ -111,6 +119,11 @@
     :root {
         --reduced-motion: none;
     }
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-body);
 }
 
 a {
@@ -588,4 +601,10 @@ h2:where(.display-rebrand) {
     -o-object-fit: contain;
     object-fit: contain;
     width: 100% !important;
+}
+
+.signup-bg-gradient {
+    background: var(--gradient-white-50), linear-gradient(180deg, #ddf9e1, #fdfffd 33%, white);
+    background-attachment: fixed;
+    min-height: 100vh;
 }
