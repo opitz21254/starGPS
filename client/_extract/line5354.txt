@@ -1,6 +1,0 @@
-﻿.is-mobile-app .d-none-mobile-app{display:none!important}
-.is-mobile-app .d-inline-mobile-app{display:inline!important}
-.is-mobile-app .d-inline-block-mobile-app{display:inline-block!important}
-.is-mobile-app .d-block-mobile-app{display:block!important}
-.is-mobile-app .d-flex-mobile-app{display:flex!important}
-

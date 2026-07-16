@@ -1,6 +1,0 @@
-﻿.air3-loader-container,.air3-loader-overlay{border-radius:inherit}
-.air3-loader-overlay{--loader-z-index:var(--zindex-section-loading);--loader-bg:var(--bg-glass-inverse-95);align-items:center;background-color:var(--loader-bg);bottom:0;display:none;justify-content:center;left:0;position:absolute;right:0;top:0;z-index:var(--loader-z-index)}
-.air3-loader-overlay.is-open{display:flex}
-.air3-loader-fullpage{position:fixed;z-index:10000}
-</style><script>Object.defineProperty(window, "_authGlobalFetch", {value: fetch}
-)</script><script type="text/javascript">(() => {

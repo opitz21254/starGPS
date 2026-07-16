@@ -1,1 +1,0 @@
-﻿    --shadow-on-control,inset 0 0 0 var(--input-border-width) var(--input-border-color)
