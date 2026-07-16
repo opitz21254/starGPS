@@ -1,0 +1,1 @@
+﻿    --hc-bg-selected,var(--color-highlight-10)

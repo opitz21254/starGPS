@@ -1,0 +1,2 @@
+﻿body.sn-clearview-account-type #visitor-skinny-app-container .up-n-link.nav-brand:before,body.sn-clearview-account-type #visitor-skinny-app-container.ma-scope_visitor-skinny .up-n-link.nav-brand:before{background:linear-gradient(90deg,hsla(90,62%,73%,.8),rgba(67,211,63,.8) 40.87%,rgba(11,255,82,.8) 70.19%,rgba(31,192,50,.8));content:"";filter:blur(98px);height:36px;left:0;opacity:.7;pointer-events:none;position:fixed;top:0;width:100%;z-index:0}
+

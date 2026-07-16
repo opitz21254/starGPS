@@ -18,6 +18,8 @@ Build a website where:
 - Community hierarchy is visualized
 - Meeting links are generated (mock implementation acceptable initially)
 
+
+
 ---
 
 # Saturday, July 11 — Project Setup (10%)

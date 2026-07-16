@@ -1,0 +1,6 @@
+﻿:where(.up-n-link)>.air3-icon{margin-top:-3px;vertical-align:middle}
+[aria-disabled]:where(.up-n-link){color:var(--text-on-disabled,var(--text-disabled));cursor:not-allowed;-webkit-text-decoration:none;text-decoration:none}
+.inverted[aria-disabled]:where(.up-n-link){opacity:.4}
+@media (forced-colors:active){.inverted[aria-disabled]:where(.up-n-link){opacity:1}
+}
+

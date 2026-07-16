@@ -1,0 +1,243 @@
+/*
+ * usedStyles.css
+ *
+ * Styles collected from the original site's CSS, reduced to what
+ * index.html actually uses.
+ *
+ * Sources so far:
+ *   1. fluid-adapter theme overrides  -> a few .air3-btn/.air3-thumbnail tweaks
+ *   2. visitor-skinny navbar css      -> design tokens (:root below)
+ *   3. css-loader button module       -> .air3-btn / .air3-btn-circle component
+ *
+ * Still missing from all sources: rules for fsr-*, account-type-*,
+ * clearview-*, heading-container, display-rebrand, caret-icon, arrow-icon,
+ * sr-only, air3-icon sizing, and utility classes (d-flex, text-center, ...).
+ */
+
+/* ============================================================
+   Design tokens (from sources 1 + 2, un-scoped for this page)
+   ============================================================ */
+:root {
+    --spacing-1x: 4px;
+    --spacing-2x: 8px;
+    --spacing-3x: 12px;
+    --spacing-4x: 16px;
+    --spacing-6x: 24px;
+    --spacing-8x: 32px;
+    --radius-2x: 4px;
+    --radius-4x: 8px;
+    --radius-8x: 16px;
+    --radius-12x: 24px;
+    --radius-pill: 10rem;
+    --height-base: 40px;
+    --height-sm: 32px;
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weight-550: 550;
+    --font-weight-600: 600;
+    --white: #fff;
+    --gray-45: #676767;
+    --gray-55: #a5a5a5;
+    --gray-80: #e9e9e9;
+    --gray-90: #f1f1f1;
+    --gray-95: #f9f9f9;
+    --up-black: #181818;
+    --up-green: #14a800;
+    --brand-green: #108a00;
+
+    --font-family-base: "Neue Montreal";
+    --font-size-base: 16px;
+    --line-height-base: 150%;
+    --font-size-base-sm: 14px;
+    --font-size-h2: 34px;
+    --line-height-h2: 110%;
+    --font-weight-base: var(--font-weight-500);
+    --font-weight-strong: var(--font-weight-500);
+    --font-weight-heading: var(--font-weight-550);
+    --font-weight-bold: var(--font-weight-600);
+    --text-link: var(--brand-green);
+    --text-link-hover: var(--up-green);
+    --underline-link: underline;
+    --underline-link-hover: underline;
+    --border-color: var(--gray-80);
+    --bg-body: var(--white);
+    --text-dark-on-body: var(--up-black);
+    --text-light-on-body: var(--gray-45);
+    --text-muted-on-body: var(--gray-55);
+    --bg-disabled: var(--gray-80);
+    --text-on-disabled: var(--gray-55);
+
+    /* button tokens */
+    --border-width-btn: 2px;
+    --radius-btn: var(--radius-4x);
+    --font-size-btn-base: var(--font-size-base);
+    --bg-btn-circle: #0000;
+    --bg-btn-circle-hover: var(--gray-90);
+    --text-on-btn-circle: var(--up-black);
+    --text-on-btn-circle-hover: var(--up-black);
+    --bg-btn-check-light-hover: var(--gray-90);
+
+    /* icon tokens */
+    --text-icon: var(--up-black);
+    --size-icon-base: 24px;
+    --size-icon-sm: 16px;
+    --size-icon-lg: 32px;
+    --size-icon-xl: 48px;
+
+    /* used by .air3-thumbnail below */
+    --navy-hsl: 220, 29.41%, 20%;
+    --fluid-navy-opacity-3: hsla(var(--navy-hsl), 0.03);
+    --interactive-secondary-bg-color: var(--fluid-navy-opacity-3);
+
+    /* the extracted svg icons stroke with var(--icon-color, #001e00) */
+    --icon-color: #001e00;
+}
+
+@media (max-width:699.98px) {
+    :root {
+        --font-size-h2: 26px;
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    :root {
+        --reduced-motion: none;
+    }
+}
+
+/* ============================================================
+   Button component (from source 3, css-loader module).
+   Variant rules the page doesn't use (primary/secondary/tertiary,
+   inverted, counter, sm/lg/xl, link variants) were dropped.
+   ============================================================ */
+.air3-btn {
+    --btn-height: var(--height-base);
+    --btn-gap: var(--spacing-2x);
+    --btn-padding-x: var(--spacing-6x);
+    --btn-border: var(--border-width-btn) solid var(--btn-border-color, transparent);
+    --btn-font-size: var(--font-size-btn-base);
+    --btn-font-weight: var(--font-weight-strong);
+    --btn-radius: var(--radius-btn);
+    --btn-bg-circle: var(--bg-btn-circle);
+    --btn-bg-circle-hover: var(--bg-btn-circle-hover);
+    --btn-text-circle: var(--text-on-btn-circle);
+    --btn-text-circle-hover: var(--text-on-btn-circle-hover);
+    align-items: center;
+    background-color: transparent;
+    background-color: var(--btn-bg, transparent);
+    border: var(--btn-border);
+    border-radius: var(--btn-radius);
+    box-shadow: none;
+    box-shadow: var(--btn-shadow, none);
+    color: inherit;
+    color: var(--btn-text, inherit);
+    -moz-column-gap: var(--btn-gap);
+    column-gap: var(--btn-gap);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    justify-content: center;
+    line-height: var(--btn-height);
+    max-height: var(--btn-height);
+    padding: 0 var(--btn-padding-x);
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    transition: all .1s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
+@media (hover:hover) {
+    .air3-btn:hover {
+        --btn-bg: var(--btn-bg-hover, inherit);
+        --btn-text: var(--btn-text-hover, inherit);
+    }
+
+    .air3-btn:hover:not([disabled]):not(.is-disabled) {
+        --btn-border-color: var(--btn-border-color-hover, inherit);
+    }
+}
+
+.air3-btn .air3-icon {
+    color: inherit;
+    color: var(--btn-text-icon, inherit);
+    flex: none;
+}
+
+.air3-btn:active:not([disabled]):not(.is-disabled) {
+    transform: scale(.96);
+    transform: scale(var(--reduced-motion, .96));
+}
+
+.air3-btn.is-disabled,
+.air3-btn[disabled] {
+    --btn-text: var(--text-on-disabled);
+    cursor: not-allowed;
+}
+
+.air3-btn:not(.air3-btn-circle):not(.air3-btn-link-secondary):has(.air3-icon) {
+    padding-left: calc(var(--btn-padding-x) - var(--spacing-1x));
+}
+
+.air3-btn-circle {
+    border-radius: var(--radius-pill);
+    height: var(--btn-height);
+    max-height: none;
+    padding: 0;
+    width: var(--btn-height);
+}
+
+/* Original selectors also exclude the primary/secondary/tertiary and
+   inverted variant classes, none of which this page uses. */
+.air3-btn-circle:not([disabled]):not(.is-disabled) {
+    --btn-bg: var(--btn-bg-circle);
+    --btn-text: var(--btn-text-circle);
+}
+
+.air3-btn-circle:not([disabled]):not(.is-disabled):hover {
+    --btn-bg: var(--btn-bg-circle-hover);
+    --btn-text: var(--btn-text-circle-hover);
+}
+
+/* ============================================================
+   Rules from source 1 (fluid-adapter / rebrand overrides)
+   ============================================================ */
+
+/* Rebrand look: pill-shaped buttons with 1px borders */
+.air3-btn {
+    --btn-radius: var(--radius-pill);
+    border-width: 1px !important;
+}
+
+.air3-btn,
+.air3-btn-link {
+    --btn-padding-x: var(--spacing-4x);
+    font-weight: var(--font-weight-bold);
+}
+
+.air3-thumbnail {
+    --thumbnail-radius-active: none;
+    border: 0;
+    background: var(--interactive-secondary-bg-color);
+}
+
+.air3-thumbnail:hover,
+.air3-thumbnail:focus-within {
+    background: var(--bg-btn-check-light-hover);
+}
+
+/* Only affects inline <svg> elements; the icons are currently loaded via
+   <img> tags, so this is inert unless the svgs get inlined again. */
+.air3-icon > svg circle,
+.air3-icon > svg path,
+.air3-icon > svg polygon,
+.air3-icon > svg rect {
+    stroke-width: var(--icon-stroke-width, 1.5);
+}
+
+.air3-btn:not(.air3-btn-sm) .air3-icon {
+    --icon-size: 20px;
+}

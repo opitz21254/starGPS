@@ -1,0 +1,19 @@
+﻿  );background-clip:padding-box;background-color:var(--input-bg);border:var(--input-border);border-radius:var(--input-radius);color:var(--input-text);display:block;font-size:var(--input-font-size);font-weight:var(--input-font-weight);line-height:var(--input-line-height);transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;width:100%}
+.air3-input::-webkit-contacts-auto-fill-button,.air3-textarea::-webkit-contacts-auto-fill-button{background:var(--input-text)}
+.air3-input:-webkit-autofill,.air3-textarea:-webkit-autofill{-webkit-text-fill-color:var(--input-text);-webkit-box-shadow:0 0 0 1000px var(--bg-body) inset}
+.air3-input:focus,.air3-input:hover,.air3-textarea:focus,.air3-textarea:hover{box-shadow:var(--input-shadow)}
+.air3-input:hover,.air3-textarea:hover{--input-border-color:var(--input-border-color-hover)}
+.air3-input:focus,.air3-textarea:focus{--input-border-color:var(--input-border-color-selected)}
+.air3-input[disabled],.air3-textarea[disabled]{--input-border-color:var(--border-color-disabled);--input-bg:var(--bg-disabled);--input-text:var(--text-on-disabled);--input-shadow:none;cursor:not-allowed}
+.air3-input[disabled]::-moz-placeholder,.air3-textarea[disabled]::-moz-placeholder{color:var(--text-on-disabled)}
+.air3-input[disabled]::placeholder,.air3-textarea[disabled]::placeholder{color:var(--text-on-disabled)}
+.air3-input::-moz-placeholder,.air3-textarea::-moz-placeholder{color:var(--input-text-placeholder);opacity:1}
+.air3-input::placeholder,.air3-textarea::placeholder{color:var(--input-text-placeholder);opacity:1}
+.air3-input:where(.has-error),.air3-textarea:where(.has-error){--input-border-color:var(--color-danger)!important;box-shadow:var(--input-shadow)}
+.air3-input{--input-height:var(--height-base);--input-padding:var(--spacing-2x) var(--spacing-4x);--input-round-radius:var(--radius-pill);--input-height-sm:var(--height-sm);--input-radius-sm:var(--radius-4x);min-height:var(--input-height);padding:var(--input-padding)}
+.air3-input[type=search],.air3-input[type=search]::-webkit-search-cancel-button,.air3-input[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+.air3-textarea{--textarea-padding:var(--spacing-2x) var(--spacing-4x);height:auto;padding:var(--textarea-padding);resize:vertical}
+.air3-textarea-expanding{resize:none}
+.air3-input-sm{--input-radius:var(--input-radius-sm);min-height:var(--input-height-sm)}
+.air3-input-round{border-radius:var(--input-round-radius)}
+
