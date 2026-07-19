@@ -28,7 +28,7 @@
     --brand-green: #108a00;
 
     --font-family-base: "Neue Montreal";
-    --font-family-rebrand: "Neue Montreal";
+    --font-family-display: "Neue Montreal";
     --font-size-base: 16px;
     --line-height-base: 150%;
     --font-size-base-sm: 14px;
@@ -37,7 +37,7 @@
     --line-height-h2: 110%;
     --font-size-h4-lg: 48px;
     --letter-spacing-h2: 0.02em;
-    --letter-spacing-h2-rebrand: var(--letter-spacing-h2);
+    --letter-spacing-h2-display: var(--letter-spacing-h2);
     --spacing-heading: 0.5em;
     --text-heading: inherit;
     --font-weight-base: var(--font-weight-500);
@@ -99,9 +99,7 @@
 
     --icon-color: #001e00;
 
-    /* Gradient tokens from the signup capture (theme block, line 5317).
-       --gradient-white-50 is a 50%-white layer stacked on top of the green
-       gradients to soften them, same trick the role cards use. */
+
     --gradient-white-50: linear-gradient(0deg, hsla(0, 0%, 100%, .5), hsla(0, 0%, 100%, .5));
     --gradient-lime-green: linear-gradient(90deg, #dff69b, #95e79b 50%, #a9f9b2);
     --gradient-lime-green-diagonal: linear-gradient(158deg, #dff69b, #95e79b 50%, #80de8e);
@@ -136,6 +134,7 @@ a {
 }
 
 @media (hover:hover) {
+
     a:active,
     a:focus,
     a:hover {
@@ -147,22 +146,18 @@ a {
 
 .h2,
 h2 {
-    color: var(--text-heading);
-    font-family: inherit;
-    font-weight: var(--font-weight-heading);
-    margin: 0 0 var(--spacing-heading);
-    word-break: break-word;
-    font-size: var(--font-size-h2);
-    letter-spacing: var(--letter-spacing-h2);
-    line-height: var(--line-height-h2);
+    font-family: "Kalam", cursive;
+    font-weight: 700;
+    font-size: 60px;
+    letter-spacing: var(--letter-spacing-h2-display);
 }
 
-.h2:where(.display-rebrand),
-h2:where(.display-rebrand) {
-    font-family: var(--font-family-rebrand);
-    font-weight: var(--font-weight-rebrand, var(--font-weight-heading));
-    font-size: var(--font-size-h2-rebrand, var(--font-size-h2));
-    letter-spacing: var(--letter-spacing-h2-rebrand);
+.h2:where(.display-title),
+h2:where(.display-title) {
+    font-family: "Kalam", cursive;
+    font-weight: 700;
+    font-size: 60px;
+    letter-spacing: var(--letter-spacing-h2-display);
 }
 
 .sr-only {
@@ -241,7 +236,7 @@ h2:where(.display-rebrand) {
     height: 100% !important;
 }
 
-.air3-icon {
+.icon {
     --icon-color: currentColor;
     --icon-size: var(--size-icon-base);
     --icon-stroke-width: var(--stroke-width-icon-base);
@@ -251,7 +246,7 @@ h2:where(.display-rebrand) {
     width: var(--icon-size);
 }
 
-.air3-icon > svg {
+.icon>svg {
     display: block;
     height: 100% !important;
     -o-object-fit: contain;
@@ -260,22 +255,22 @@ h2:where(.display-rebrand) {
     stroke-width: var(--icon-stroke-width);
 }
 
-.air3-icon.sm {
+.icon.sm {
     --icon-size: var(--size-icon-sm);
     --icon-stroke-width: var(--stroke-width-icon-sm);
 }
 
-.air3-icon.lg {
+.icon.lg {
     --icon-size: var(--size-icon-lg);
     --icon-stroke-width: var(--stroke-width-icon-lg);
 }
 
-.air3-icon.xl {
+.icon.xl {
     --icon-size: var(--size-icon-xl);
     --icon-stroke-width: var(--stroke-width-icon-xl);
 }
 
-.air3-thumbnail {
+.selection-card {
     --thumbnail-bg: var(--bg-muted-light);
     --thumbnail-border: var(--border);
     --thumbnail-radius: var(--radius-4x);
@@ -291,12 +286,12 @@ h2:where(.display-rebrand) {
     transition: all .2s ease-in-out;
 }
 
-.air3-thumbnail:focus-within,
-.air3-thumbnail:hover {
+.selection-card:focus-within,
+.selection-card:hover {
     box-shadow: var(--thumbnail-radius-active);
 }
 
-.air3-thumbnail > img {
+.selection-card>img {
     display: block;
     height: auto;
     margin-left: auto;
@@ -304,14 +299,14 @@ h2:where(.display-rebrand) {
     max-width: 100%;
 }
 
-.air3-thumbnail .air3-caption {
+.selection-card .selection-card-caption {
     display: block;
     font-size: var(--thumbnail-caption-font-size);
     font-weight: var(--thumbnail-caption-font-weight);
     padding: var(--thumbnail-caption-padding);
 }
 
-.air3-btn {
+.btn {
     --btn-height: var(--height-base);
     --btn-gap: var(--spacing-2x);
     --btn-padding-x: var(--spacing-6x);
@@ -352,38 +347,38 @@ h2:where(.display-rebrand) {
 }
 
 @media (hover:hover) {
-    .air3-btn:hover {
+    .btn:hover {
         --btn-bg: var(--btn-bg-hover, inherit);
         --btn-text: var(--btn-text-hover, inherit);
     }
 
-    .air3-btn:hover:not([disabled]):not(.is-disabled) {
+    .btn:hover:not([disabled]):not(.is-disabled) {
         --btn-border-color: var(--btn-border-color-hover, inherit);
     }
 }
 
-.air3-btn .air3-icon {
+.btn .icon {
     color: inherit;
     color: var(--btn-text-icon, inherit);
     flex: none;
 }
 
-.air3-btn:active:not([disabled]):not(.is-disabled) {
+.btn:active:not([disabled]):not(.is-disabled) {
     transform: scale(.96);
     transform: scale(var(--reduced-motion, .96));
 }
 
-.air3-btn.is-disabled,
-.air3-btn[disabled] {
+.btn.is-disabled,
+.btn[disabled] {
     --btn-text: var(--text-on-disabled);
     cursor: not-allowed;
 }
 
-.air3-btn:not(.air3-btn-circle):not(.air3-btn-link-secondary):has(.air3-icon) {
+.btn:not(.btn-circle):not(.btn-link-secondary):has(.icon) {
     padding-left: calc(var(--btn-padding-x) - var(--spacing-1x));
 }
 
-.air3-btn-circle {
+.btn-circle {
     border-radius: var(--radius-pill);
     height: var(--btn-height);
     max-height: none;
@@ -391,52 +386,52 @@ h2:where(.display-rebrand) {
     width: var(--btn-height);
 }
 
-.air3-btn-circle:not([disabled]):not(.is-disabled) {
+.btn-circle:not([disabled]):not(.is-disabled) {
     --btn-bg: var(--btn-bg-circle);
     --btn-text: var(--btn-text-circle);
 }
 
-.air3-btn-circle:not([disabled]):not(.is-disabled):hover {
+.btn-circle:not([disabled]):not(.is-disabled):hover {
     --btn-bg: var(--btn-bg-circle-hover);
     --btn-text: var(--btn-text-circle-hover);
 }
 
-.air3-btn {
+.btn {
     --btn-radius: var(--radius-pill);
     border-width: 1px !important;
 }
 
-.air3-btn,
-.air3-btn-link {
+.btn,
+.btn-link {
     --btn-padding-x: var(--spacing-4x);
     font-weight: var(--font-weight-bold);
 }
 
-.air3-thumbnail {
+.selection-card {
     --thumbnail-radius-active: none;
     border: 0;
     background: var(--interactive-secondary-bg-color);
 }
 
-.air3-thumbnail:hover,
-.air3-thumbnail:focus-within {
+.selection-card:hover,
+.selection-card:focus-within {
     background: var(--bg-btn-check-light-hover);
 }
 
-.air3-icon > svg circle,
-.air3-icon > svg path,
-.air3-icon > svg polygon,
-.air3-icon > svg rect {
+.icon>svg circle,
+.icon>svg path,
+.icon>svg polygon,
+.icon>svg rect {
     stroke-width: var(--icon-stroke-width, 1.5);
 }
 
-.air3-btn:not(.air3-btn-sm) .air3-icon {
+.btn:not(.btn-sm) .icon {
     --icon-size: 20px;
 }
 
-.fsr-content,
-.user-type-select-clearview-container {
-    --header-font-size: var(--font-size-h4-lg);
+.signup-content,
+.user-type-select-container {
+    --header-font-size: 120px;
     --account-type-icon-size: 80px;
     --account-type-gradient-width: 205px;
     --account-type-gradient-height: 205px;
@@ -456,9 +451,10 @@ h2:where(.display-rebrand) {
 }
 
 @media (max-width:699.98px) {
-    .fsr-content,
-    .user-type-select-clearview-container {
-        --header-font-size: var(--font-size-h2);
+
+    .signup-content,
+    .user-type-select-container {
+        --header-font-size: 3rem;
         --account-type-icon-size: 55px;
         --account-type-gradient-width: 139px;
         --account-type-gradient-height: 139px;
@@ -466,8 +462,8 @@ h2:where(.display-rebrand) {
     }
 }
 
-.fsr-content h2,
-.user-type-select-clearview-container h2 {
+.signup-content h2,
+.user-type-select-container h2 {
     font-size: var(--header-font-size);
     font-weight: var(--font-weight-600);
     margin-left: var(--account-type-heading-margin-inline);
@@ -475,20 +471,20 @@ h2:where(.display-rebrand) {
     width: var(--account-type-heading-width);
 }
 
-.air3-thumbnail {
+.selection-card {
     --thumbnail-bg: var(--bg-body);
 }
 
-.air3-thumbnail .account-type-icon {
+.selection-card .account-type-icon {
     --icon-size: var(--account-type-icon-size) !important;
 }
 
-.fsr-content .air3-thumbnail .account-type-icon svg *,
-.user-type-select-clearview-container .air3-thumbnail .account-type-icon svg * {
+.signup-content .selection-card .account-type-icon svg *,
+.user-type-select-container .selection-card .account-type-icon svg * {
     stroke-width: 3.5px !important;
 }
 
-.air3-thumbnail .account-type-title {
+.selection-card .account-type-title {
     align-items: center;
     display: inline-flex;
     font-size: var(--account-type-title-font-size);
@@ -497,12 +493,12 @@ h2:where(.display-rebrand) {
 }
 
 @media (max-width:699.98px) {
-    .air3-thumbnail .account-type-title {
+    .selection-card .account-type-title {
         font-size: var(--font-size-base);
     }
 }
 
-.air3-thumbnail .account-type-arrow {
+.selection-card .account-type-arrow {
     display: inline-flex;
     flex: 0 0 auto;
     margin-left: var(--ws-1x);
@@ -510,11 +506,11 @@ h2:where(.display-rebrand) {
     vertical-align: middle;
 }
 
-.air3-thumbnail .text-muted {
+.selection-card .text-muted {
     color: var(--gray-45);
 }
 
-.accout-type-gradient {
+.account-type-gradient {
     align-items: center;
     background: linear-gradient(115deg, #a9f9b2, #dff69b 72%, #95e79b);
     border-radius: var(--radius-4x);
@@ -527,7 +523,7 @@ h2:where(.display-rebrand) {
     width: var(--account-type-gradient-width);
 }
 
-.accout-type-gradient:before {
+.account-type-gradient:before {
     background: hsla(0, 0%, 100%, .5);
     bottom: 0;
     content: "";
@@ -539,35 +535,35 @@ h2:where(.display-rebrand) {
     z-index: 0;
 }
 
-.accout-type-gradient > * {
+.account-type-gradient>* {
     position: relative;
     z-index: 1;
 }
 
-.air3-thumbnail.selected,
-.air3-thumbnail:hover {
+.selection-card.selected,
+.selection-card:hover {
     cursor: pointer;
 }
 
-.air3-thumbnail.selected .accout-type-gradient:before,
-.air3-thumbnail:hover .accout-type-gradient:before {
+.selection-card.selected .account-type-gradient:before,
+.selection-card:hover .account-type-gradient:before {
     opacity: 0;
 }
 
-.air3-thumbnail.selected .account-type-title .account-type-arrow,
-.air3-thumbnail:hover .account-type-title .account-type-arrow {
+.selection-card.selected .account-type-title .account-type-arrow,
+.selection-card:hover .account-type-title .account-type-arrow {
     margin-left: var(--ws-3x);
 }
 
-.type-hire .accout-type-gradient {
+.type-client .account-type-gradient {
     background: linear-gradient(135deg, #dff69b, #95e79b 50%, #a9f9b2 90%, #dff69b);
 }
 
-.clearview-role-card .accout-type-gradient {
+.role-card .account-type-gradient {
     margin: var(--spacing-3x) var(--spacing-3x) var(--spacing-2x);
 }
 
-.clearview-role-card-caption {
+.role-card-caption {
     display: block;
     font-size: var(--thumbnail-caption-font-size, var(--font-size-base-sm));
     font-weight: var(--thumbnail-caption-font-weight, var(--font-weight-body));
@@ -576,32 +572,41 @@ h2:where(.display-rebrand) {
 }
 
 @media (min-width:700px) {
-    .clearview-role-card .accout-type-gradient {
+    .role-card .account-type-gradient {
         margin: var(--spacing-4x) var(--spacing-4x) var(--spacing-2x);
     }
 
-    .clearview-role-card-caption {
+    .role-card-caption {
         padding-top: var(--spacing-2x);
     }
 
-    .clearview-role-card-caption .account-type-title {
+    .role-card-caption .account-type-title {
         margin-bottom: var(--spacing-1x);
     }
 }
 
-.fsr-step1-cards-grid {
+.role-cards-grid {
     display: flex;
     gap: var(--account-type-grid-gap, var(--ws-4x));
     justify-content: center;
 }
 
-.air3-icon > img {
+.icon>img {
     display: block;
     height: 100% !important;
     -o-object-fit: contain;
     object-fit: contain;
     width: 100% !important;
 }
+
+.signup-subtitle {
+    color: var(--text-light-on-body);
+    font-size: var(--font-size-base-lg);
+    font-weight: var(--font-weight-body);
+    line-height: var(--line-height-base);
+    margin: 0 0 var(--spacing-8x);
+}
+
 
 .signup-bg-gradient {
     background: var(--gradient-white-50), linear-gradient(180deg, #ddf9e1, #fdfffd 33%, white);

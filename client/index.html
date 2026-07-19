@@ -5,55 +5,57 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Client & Guide Sign-In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div>
-    <div class="air3-fullscreen-container">
-      <div class="fsr-overlay signup-bg-gradient d-flex flex-column">
+    <div class="fullscreen-container">
+      <div class="signup-overlay signup-bg-gradient d-flex flex-column">
         <header></header>
-        <main class="fsr-main d-flex align-items-start justify-content-center">
-          <div class="fsr-content">
-            <div class="fsr-step1">
+        <main class="signup-main d-flex align-items-start justify-content-center">
+          <div class="signup-content">
+            <div class="role-select-step">
               <div class="d-flex heading-container align-items-center mb-6x">
-                <button class="air3-btn air3-btn-circle d-none d-md-flex flex-shrink-0">
+                <button class="btn btn-circle d-none d-md-flex flex-shrink-0">
                   <span class="sr-only">Back</span>
-                  <div class="air3-icon sm">
+                  <div class="icon sm">
                     <img src="img/caret-left.svg" class="caret-icon" alt="" />
                   </div>
                 </button>
-                <h2 class="display-rebrand text-center my-6x flex-1">
-                  Join as a client or guide
+                <h2 class="display-title text-center my-6x flex-1">
+                  Welcome to starGPS
                 </h2>
               </div>
-              <fieldset class="fsr-step1-cards">
-                <div class="fsr-step1-cards-grid">
-                  <button class="air3-thumbnail p-0 clearview-role-card h-100 type-hire">
-                    <div class="accout-type-gradient">
-                      <div class="air3-icon xl account-type-icon">
+              <p class="signup-subtitle text-center">Which describes you best?</p>
+              <fieldset class="role-cards">
+                <div class="role-cards-grid">
+                  <button class="selection-card p-0 role-card h-100 type-client">
+                    <div class="account-type-gradient">
+                      <div class="icon xl account-type-icon">
                         <img src="img/person-client copy.svg" class="account-type-icon-img" alt="" />
                       </div>
                     </div>
-                    <div class="clearview-role-card-caption">
+                    <div class="role-card-caption">
                       <div class="account-type-title">
                         Client
-                        <div class="air3-icon sm account-type-arrow">
+                        <div class="icon sm account-type-arrow">
                           <img src="img/right-arrow.svg" class="arrow-icon" alt="" />
                         </div>
                       </div>
                       <div class="text-muted">Search & Shop GPS</div>
                     </div>
-                  </button><button class="air3-thumbnail p-0 clearview-role-card h-100 type-work">
-                    <div class="accout-type-gradient">
-                      <div class="air3-icon xl account-type-icon">
+                  </button><button class="selection-card p-0 role-card h-100 type-guide" onclick="window.location.href='signup/'">
+                    <div class="account-type-gradient">
+                      <div class="icon xl account-type-icon">
                         <img src="img/person-guide copy.svg" class="account-type-icon-img" alt="" />
                       </div>
                     </div>
-                    <div class="clearview-role-card-caption">
+                    <div class="role-card-caption">
                       <div class="account-type-title">
                         Guide
-                        <div class="air3-icon sm account-type-arrow">
+                        <div class="icon sm account-type-arrow">
                           <img src="img/right-arrow.svg" class="arrow-icon" alt="" />
                         </div>
                       </div>
