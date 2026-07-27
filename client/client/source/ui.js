@@ -1,19 +1,6 @@
-import { products } from "./domain.js";
+import { products, profiles } from "./domain.js";
 
-var customers = [
-  {
-    label: "JON DOE",
-    inbox: ["GPS-1410"],
-  },
-  {
-    label: "ALICE SMITH",
-    inbox: ["GPS-1400", "GPS-1405"],
-  },
-  {
-    label: "MAC JONES",
-    inbox: [],
-  },
-];
+
 
 function findProduct(productId) {
   return products.find((product) => product.id === productId);
@@ -27,7 +14,7 @@ function renderCustomers() {
   const customerContainer = document.getElementById("customerList");
   customerContainer.replaceChildren();
 
-  customers.forEach((customer, index) => {
+  profiles.forEach((customer, index) => {
     const column = document.createElement("section");
     column.className = "column";
     column.id = `column${index + 1}`;

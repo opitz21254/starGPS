@@ -30,7 +30,14 @@ const setupForm = () => {
   });
 
   // Create Password Row
-  const passwordElement = renderTextField({})
+  const passwordElement = renderTextField({
+    name: "password",
+    label: "Password",
+    type: "password",
+    autocomplete: "password",
+    placeholder: "",
+    wrapperClasses: ["mt-3x", "mt-md-6x"],
+  });
 
   // Create Country Row
   // const countryElement =
@@ -42,7 +49,7 @@ const setupForm = () => {
   // Create "Apply as a Client" link
 
   const form = document.getElementById("signupForm-redesigned");
-  form.replaceChildren(nameElement, emailElement);
+  form.replaceChildren(nameElement, emailElement, passwordElement);
 };
 
 function renderTextField({
