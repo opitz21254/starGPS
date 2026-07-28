@@ -1,31 +1,38 @@
-using System.Text.Json;
+Console.WriteLine("Hello World!");
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors();
+personalProfileHandler myProfile = new(121212, "brennan", "opitz", "1@gmail.com", "pass1234", 131313, true, Role.Guide);
 
-var app = builder.Build();
-app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+Console.WriteLine($"Added User: {myProfile.givenName}");
 
-var projectList = new List<MyProject>();
 
-if(File.Exists("projectList.json"))
-{
-    var fileContents = File.ReadAllText("projectList.json");
-    projectList = JsonSerializer.Deserialize<List<MyProject>>(fileContents);
-}
+// using System.Text.Json;
 
-app.MapGet("/projects", () =>
- {
-     return projectList;
- });
+// var builder = WebApplication.CreateBuilder(args);
+// builder.Services.AddCors();
 
-app.MapPost("/project", (MyProject newProject) => {
-    projectList.Add(newProject);
-    Console.WriteLine("Added project to list");
+// var app = builder.Build();
+// app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
-    File.WriteAllText("projectlist.json", JsonSerializer.Serialize(projectList));
-});
+// var projectList = new List<MyProject>();
 
-app.Run();
+// if(File.Exists("projectList.json"))
+// {
+//     var fileContents = File.ReadAllText("projectList.json");
+//     projectList = JsonSerializer.Deserialize<List<MyProject>>(fileContents);
+// }
 
-public record MyProject(bool Done, string Title, long Created);
+// app.MapGet("/projects", () =>
+//  {
+//      return projectList;
+//  });
+
+// app.MapPost("/project", (MyProject newProject) => {
+//     projectList.Add(newProject);
+//     Console.WriteLine("Added project to list");
+
+//     File.WriteAllText("projectlist.json", JsonSerializer.Serialize(projectList));
+// });
+
+// app.Run();
+
+// public record MyProject(bool Done, string Title, long Created);

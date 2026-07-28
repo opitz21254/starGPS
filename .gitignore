@@ -59,3 +59,6 @@ nunit-*.xml
 # Local static files
 static-index.html
 star-gps-signup.css
+
+# Local secrets / config
+UserConfig.txt

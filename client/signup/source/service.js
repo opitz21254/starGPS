@@ -5,19 +5,19 @@ export const createProfileOnApi = async ({
    familyName,
    email,
    password,
-   country,
+   countryCode,
    termsAccept,
-   isGuide,
+   isGuideRole,
 }) => {
    const newProfile = {
-      created: Date.now(),
+      createdDate: Date.now(),
       givenName,
       familyName,
       email,
       password,
-      country,
+      countryCode,
       termsAccept,
-      isGuide,
+      isGuideRole,
    };
    console.log("newProfile created:", newProfile);
 
