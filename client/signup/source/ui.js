@@ -2,98 +2,75 @@ import { countries } from "./domain.js";
 import { createProfileOnApi } from "./service.js";
 
 const setupForm = () => {
-  const form = document.getElementById("signupForm-redesigned");
-  form.replaceChildren();
+    // Create Name Row
+    const nameElement = document.createElement("div");
+    nameElement.className = "air3-grid-container name-inputs col-gap-4x";
+    stampScopedAttr(nameElement);
 
-  //Create Name Row
-  const nameElement = document.createElement("div");
-  nameElement.className = "air3-grid-container name-inputs col-gap-4x";
-  stampScopedAttr(nameElement);
+    var {input: firstNameInput, inputWrapper: firstNameGroup} = renderTextField({
+        name: "first-name",
+        label: "First name",
+        autocomplete: "given-name",
+        placeholder: "Jon",
+        wrapperClasses: ["span-6", "mt-3x"],
+    });
+    var {input: lastNameInput, inputWrapper: lastNameGroup} = renderTextField({
+        name: "last-name",
+        label: "Last name",
+        autocomplete: "family-name",
+        placeholder: "Doe",
+        wrapperClasses: ["span-6", "mt-3x"],
+    });
+    nameElement.append(firstNameGroup, lastNameGroup);
 
-  //Start Replace
-  const firstName = document.createElement("div");
-  addClasses(firstName, ["span-6", "mt-3x"]);
-  stampScopedAttr(firstName);
+    // Create Email Row - No "Parent Class" is needed
+    var {input: emailInput, inputWrapper: emailGroup} = renderTextField({
+        name: "email",
+        label: "Work email address",
+        type: "email",
+        autocomplete: "email",
+        placeholder: "",
+        wrapperClasses: ["mt-3x", "mt-md-6x"],
+    });
 
-  const firstNameLabel = renderLabelElement("first-name", "First name");
+    // Create Password Row
+    // const passwordElement = renderPasswordField({
+    //     name: "password",
+    //     label: "Password",
+    //     type: "password",
+    //     autocomplete: "password",
+    //     placeholder: "Password (8 or more characters)",
+    //     wrapperClasses: ["mt-3x", "mt-md-6x"],
+    // });
 
-  var {input: firstNameInput, inputWrapper: firstNameInputWrapper} = renderInputGroup({
-    name: "first-name",
-    type: "text",
-    autocomplete: "given-name",
-    placeholder: "Jon",
-  });
+    // // Create Country Row
+    // const countryElement = renderCountryField({
+    //     name: "country",
+    //     label: "Country",
+    //     autocomplete: "country",
+    //     placeholder: "",
+    //     wrapperClasses: ["mt-3x", "mt-md-6x", "mb-3x"],
+    // });
 
-  firstName.append(firstNameLabel, firstNameInputWrapper);
+    // // Create User Agreement Acknowledgement
+    // const termsElement = renderTermsCheckbox();
 
-  // Last Name
-  const lastName = document.createElement("div");
-  addClasses(lastName, ["span-6", "mt-3x"]);
-  stampScopedAttr(lastName);
+    // Create "Create my account" button
+    const submitElement = renderSubmitButton();
 
-  const lastNameLabel = renderLabelElement("last-name", "Last name");
+    // // Create "Apply as talent" / "Log In" links
+    // const hatchElement = renderSignupTypeHatch();
 
-  var {input: lastNameInput, inputWrapper: lastNameInputWrapper} = renderInputGroup({
-    name: "last-name",
-    type: "text",
-    autocomplete: "family-name",
-    placeholder: "Doe",
-  });
-
-  lastName.append(lastNameLabel, lastNameInputWrapper);
-
-  nameElement.append(firstName, lastName);
-  form.appendChild(nameElement);
-
-  //Create Email Row - No Parent Class is needed
-  const email = document.createElement("div");
-  addClasses(email, ["mt-3x", "mt-md-6x"]);
-  stampScopedAttr(email);
-
-  const emailLabel = renderLabelElement("email", "Work email address");
-
-  var {input: emailInput, inputWrapper: emailInputWrapper} = renderInputGroup({
-    name: "email",
-    type: "email",
-    autocomplete: "email",
-    placeholder: "",
-  });
-
-  email.append(emailLabel, emailInput);
-  form.appendChild(email);
-
-  const submitElement = renderSubmitButton();
-  form.appendChild(submitElement);
-
-  //Create Password Row
-//   const passwordElementInput = renderPasswordField({
-//     name: "password",
-//     label: "Password",
-//     type: "password",
-//     autocomplete: "password",
-//     placeholder: "Password (8 or more characters)",
-//     wrapperClasses: ["mt-3x", "mt-md-6x"],
-//     parent: form,
-//   });
-
-  //Create Country Row
-//   const countryElementInput = renderCountryField({
-//     name: "country",
-//     label: "Country",
-//     autocomplete: "country",
-//     placeholder: "",
-//     wrapperClasses: ["mt-3x", "mt-md-6x", "mb-3x"],
-//     parent: form,
-//   });
-
-  //Create User Agreement Acknowledgement
-//   const termsElementInput = renderTermsCheckbox(form);
-
-  //Create Create my account button
-//   const submitElement = renderSubmitButton();
-
-  //Create Apply as talent / Log In links
-//   const hatchElement = renderSignupTypeHatch();
+    const form = document.getElementById("signupForm-redesigned");
+    form.replaceChildren(
+        nameElement,
+        emailGroup,
+        // passwordGroup,
+        // countryElement,
+        // termsElement,
+        submitElement,
+        // hatchElement,
+    );
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -112,15 +89,94 @@ const setupForm = () => {
   });
 };
 
-// function renderTextField({
-//   name,
-//   label,
-//   type,
-//   autocomplete,
-//   placeholder,
-//   wrapperClasses,
-//   form,
-// }) {}
+// //Create Name Row
+//   const nameElement = document.createElement("div");
+//   nameElement.className = "air3-grid-container name-inputs col-gap-4x";
+//   stampScopedAttr(nameElement);
+
+//   //Start Replace
+//   const firstName = document.createElement("div");
+//   addClasses(firstName, ["span-6", "mt-3x"]);
+//   stampScopedAttr(firstName);
+
+//   const firstNameLabel = renderLabelElement("first-name", "First name");
+
+//   var {input: firstNameInput, inputWrapper: firstNameInputWrapper} = renderInputGroup({
+//     name: "first-name",
+//     type: "text",
+//     autocomplete: "given-name",
+//     placeholder: "Jon",
+//   });
+
+//   firstName.append(firstNameLabel, firstNameInputWrapper);
+
+//   // Last Name
+//   const lastName = document.createElement("div");
+//   addClasses(lastName, ["span-6", "mt-3x"]);
+//   stampScopedAttr(lastName);
+
+//   const lastNameLabel = renderLabelElement("last-name", "Last name");
+
+//   var {input: lastNameInput, inputWrapper: lastNameInputWrapper} = renderInputGroup({
+//     name: "last-name",
+//     type: "text",
+//     autocomplete: "family-name",
+//     placeholder: "Doe",
+//   });
+
+//   lastName.append(lastNameLabel, lastNameInputWrapper);
+
+//   nameElement.append(firstName, lastName);
+//   form.appendChild(nameElement);
+
+//   //Create Email Row - No Parent Class is needed
+//   const email = document.createElement("div");
+//   addClasses(email, ["mt-3x", "mt-md-6x"]);
+//   stampScopedAttr(email);
+
+//   const emailLabel = renderLabelElement("email", "Work email address");
+
+//   var {input: emailInput, inputWrapper: emailInputWrapper} = renderInputGroup({
+//     name: "email",
+//     type: "email",
+//     autocomplete: "email",
+//     placeholder: "",
+//   });
+
+//   email.append(emailLabel, emailInput);
+//   form.appendChild(email);
+
+//   const submitElement = renderSubmitButton();
+//   form.appendChild(submitElement);
+
+function renderTextField({
+    name,
+    label,
+    type,
+    autocomplete,
+    placeholder,
+    wrapperClasses,
+}) {
+    const wrapper = document.createElement("div");
+    addClasses(wrapper, wrapperClasses);
+    stampScopedAttr(wrapper);
+
+    const labelElement = renderLabelElement(name, label);
+
+    var inputObjects = renderInputGroup({
+        name,
+        type,
+        autocomplete: autocomplete,
+        placeholder: placeholder,
+    });
+
+    wrapper.append(labelElement, inputObjects.inputWrapper);
+    const returnObjects = {
+        input: inputObjects.input,
+        inputWrapper: wrapper,
+    };
+    return returnObjects;
+}
 
 // function renderPasswordField({
 //   name,
@@ -876,6 +932,7 @@ function renderLabelElement(name, label) {
   stampScopedAttr(labelElement);
   return labelElement;
 }
+
 function renderInputGroup({ name, type, autocomplete, placeholder }) {
   const inputWrapper = document.createElement("div");
   inputWrapper.className = "air3-input-group";
