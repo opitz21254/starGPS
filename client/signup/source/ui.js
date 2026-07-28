@@ -2,75 +2,84 @@ import { countries } from "./domain.js";
 import { createProfileOnApi } from "./service.js";
 
 const setupForm = () => {
-    // Create Name Row
-    const nameElement = document.createElement("div");
-    nameElement.className = "air3-grid-container name-inputs col-gap-4x";
-    stampScopedAttr(nameElement);
+  const form = document.getElementById("signupForm-redesigned");
+  form.replaceChildren();
 
-    var {input: firstNameInput, inputWrapper: firstNameGroup} = renderTextField({
-        name: "first-name",
-        label: "First name",
-        autocomplete: "given-name",
-        placeholder: "Jon",
-        wrapperClasses: ["span-6", "mt-3x"],
-    });
-    var {input: lastNameInput, inputWrapper: lastNameGroup} = renderTextField({
-        name: "last-name",
-        label: "Last name",
-        autocomplete: "family-name",
-        placeholder: "Doe",
-        wrapperClasses: ["span-6", "mt-3x"],
-    });
-    nameElement.append(firstNameGroup, lastNameGroup);
+  // Create Name Row
+  const nameGroup = document.createElement("div");
+  nameGroup.className = "air3-grid-container name-inputs col-gap-4x";
+  stampScopedAttr(nameGroup);
 
-    // Create Email Row - No "Parent Class" is needed
-    var {input: emailInput, inputWrapper: emailGroup} = renderTextField({
-        name: "email",
-        label: "Work email address",
-        type: "email",
-        autocomplete: "email",
-        placeholder: "",
-        wrapperClasses: ["mt-3x", "mt-md-6x"],
-    });
+  var { input: firstNameInput, textFieldGroup: firstName } = renderTextField({
+    name: "first-name",
+    label: "First name",
+    autocomplete: "given-name",
+    placeholder: "Jon",
+    wrapperClasses: ["span-6", "mt-3x"],
+  });
+  var { input: lastNameInput, textFieldGroup: lastName } = renderTextField({
+    name: "last-name",
+    label: "Last name",
+    autocomplete: "family-name",
+    placeholder: "Doe",
+    wrapperClasses: ["span-6", "mt-3x"],
+  });
+  nameGroup.append(firstName, lastName);
+  form.appendChild(nameGroup);
 
-    // Create Password Row
-    // const passwordElement = renderPasswordField({
-    //     name: "password",
-    //     label: "Password",
-    //     type: "password",
-    //     autocomplete: "password",
-    //     placeholder: "Password (8 or more characters)",
-    //     wrapperClasses: ["mt-3x", "mt-md-6x"],
-    // });
+  // Create Email Row - No "Parent Class" is needed
+  var { input: emailInput, textFieldGroup: email } = renderTextField({
+    name: "email",
+    label: "Work email address",
+    type: "email",
+    autocomplete: "email",
+    placeholder: "",
+    wrapperClasses: ["mt-3x", "mt-md-6x"],
+  });
+  form.appendChild(email);
 
-    // // Create Country Row
-    // const countryElement = renderCountryField({
+  // Create Password Row
+  var { input: passwordInput, passwordGroup: password } = renderPasswordField({
+    name: "password",
+    label: "Password",
+    type: "password",
+    autocomplete: "password",
+    placeholder: "Password (8 or more characters)",
+    wrapperClasses: ["mt-3x", "mt-md-6x"],
+  });
+  form.appendChild(password);
+  
+  // Create Country Row
+  //   const countryElement = renderCountryField({
     //     name: "country",
     //     label: "Country",
     //     autocomplete: "country",
     //     placeholder: "",
     //     wrapperClasses: ["mt-3x", "mt-md-6x", "mb-3x"],
-    // });
-
-    // // Create User Agreement Acknowledgement
-    // const termsElement = renderTermsCheckbox();
-
-    // Create "Create my account" button
+  //   });
+  
     const submitElement = renderSubmitButton();
+    form.appendChild(submitElement);
 
-    // // Create "Apply as talent" / "Log In" links
-    // const hatchElement = renderSignupTypeHatch();
+  // Create User Agreement Acknowledgement
+  //   const termsElement = renderTermsCheckbox();
+  
+  // Create "Create my account" button
+  //   const submitElement = renderSubmitButton();
+  
+  // // Create "Apply as talent" / "Log In" links
+  // const hatchElement = renderSignupTypeHatch();
 
-    const form = document.getElementById("signupForm-redesigned");
-    form.replaceChildren(
-        nameElement,
-        emailGroup,
-        // passwordGroup,
-        // countryElement,
-        // termsElement,
-        submitElement,
-        // hatchElement,
-    );
+//   const form = document.getElementById("signupForm-redesigned");
+//   form.replaceChildren(
+//     nameGroup,
+//     email,
+//     passwordGroup,
+//     // countryElement,
+//     // termsElement,
+//     submitElement,
+//     // hatchElement,
+//   );
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -79,7 +88,7 @@ const setupForm = () => {
       givenName: firstNameInput.value,
       familyName: lastNameInput.value,
       email: emailInput.value,
-      //   password: passwordElementInput.value,
+      password: passwordInput.value,
       //   country: countryElementInput.value,
       //   termsAccept: termsElementInput.checked,
       isGuide: true,
@@ -150,94 +159,111 @@ const setupForm = () => {
 //   form.appendChild(submitElement);
 
 function renderTextField({
-    name,
-    label,
-    type,
-    autocomplete,
-    placeholder,
-    wrapperClasses,
+  name,
+  label,
+  type,
+  autocomplete,
+  placeholder,
+  wrapperClasses,
 }) {
-    const wrapper = document.createElement("div");
-    addClasses(wrapper, wrapperClasses);
-    stampScopedAttr(wrapper);
+  const wrapper = document.createElement("div");
+  addClasses(wrapper, wrapperClasses);
+  stampScopedAttr(wrapper);
 
-    const labelElement = renderLabelElement(name, label);
+  const labelElement = renderLabelElement(name, label);
 
-    var inputObjects = renderInputGroup({
-        name,
-        type,
-        autocomplete: autocomplete,
-        placeholder: placeholder,
-    });
+  var { input: input, wrapper: inputWrapper } = renderInputGroup({
+    name,
+    type,
+    autocomplete: autocomplete,
+    placeholder: placeholder,
+  });
 
-    wrapper.append(labelElement, inputObjects.inputWrapper);
-    const returnObjects = {
-        input: inputObjects.input,
-        inputWrapper: wrapper,
-    };
-    return returnObjects;
+  wrapper.append(labelElement, inputWrapper);
+  const returnObjects = {
+    input: input,
+    textFieldGroup: wrapper,
+  };
+  return returnObjects;
 }
 
-// function renderPasswordField({
-//   name,
-//   label,
-//   type,
-//   autocomplete,
-//   placeholder,
-//   wrapperClasses,
-// }) {
-//   const wrapper = document.createElement("div");
-//   addClasses(wrapper, wrapperClasses);
-//   stampScopedAttr(wrapper);
+function renderPasswordField({
+  name,
+  label,
+  type,
+  autocomplete,
+  placeholder,
+  wrapperClasses,
+}) {
+  const wrapper = document.createElement("div");
+  addClasses(wrapper, wrapperClasses);
+  stampScopedAttr(wrapper);
 
-//   const labelElementPass = renderLabelElement(name, label);
-//   const input = renderInputGroup({ name, type, autocomplete, placeholder });
+  const labelElement = renderLabelElement(name, label);
 
-//   input.className = "air3-input-group is-appended";
+  var { input: input, wrapper: inputWrapper } = renderInputGroup({
+    name,
+    type,
+    autocomplete: autocomplete,
+    placeholder: placeholder,
+  });
 
-//   const passInputWrapper = document.createElement("div");
-//   stampScopedAttr(passInputWrapper);
-//   passInputWrapper.setAttribute("has-icon", "true");
+  inputWrapper.className = "air3-input-group is-appended";
 
-//   const wrapperEyeIcon = document.createElement("div");
-//   wrapperEyeIcon.className = "air3-input-append";
+  const passInputWrapper = document.createElement("div");
+  stampScopedAttr(passInputWrapper);
+  passInputWrapper.setAttribute("has-icon", "true");
 
-//   const buttonElement = document.createElement("button");
-//   buttonElement.setAttribute("aria-checked", "false");
-//   buttonElement.setAttribute("aria-label", "Show password");
-//   stampScopedAttr(buttonElement);
-//   buttonElement.role = "switch";
+  const wrapperEyeIcon = document.createElement("div");
+  wrapperEyeIcon.className = "air3-input-append";
 
-//   buttonElement.style.display = "inline-flex";
-//   buttonElement.style.cursor = "pointer";
-//   buttonElement.style.borderWidth = "medium";
-//   buttonElement.style.borderStyle = "none";
-//   buttonElement.style.borderColor = "currentcolor";
-//   buttonElement.style.borderImage = "initial";
-//   buttonElement.style.background = "none";
+  const buttonElement = document.createElement("button");
+  buttonElement.setAttribute("aria-checked", "false");
+  buttonElement.setAttribute("aria-label", "Show password");
+  stampScopedAttr(buttonElement);
+  buttonElement.role = "switch";
 
-//   buttonElement.type = "button";
+  buttonElement.style.display = "inline-flex";
+  buttonElement.style.cursor = "pointer";
+  buttonElement.style.borderWidth = "medium";
+  buttonElement.style.borderStyle = "none";
+  buttonElement.style.borderColor = "currentcolor";
+  buttonElement.style.borderImage = "initial";
+  buttonElement.style.background = "none";
 
-//   const svgWrapper = document.createElement("div");
-//   addClasses(svgWrapper, ["air3-icon", "md"]);
-//   stampScopedAttr(svgWrapper);
+  buttonElement.type = "button";
 
-//   const svgElement = document.createElement("img");
-//   svgElement.src = "images/eye.svg";
-//   svgElement.alt = "Eye";
+  const svgWrapper = document.createElement("div");
+  addClasses(svgWrapper, ["air3-icon", "md"]);
+  stampScopedAttr(svgWrapper);
 
-//   svgWrapper.appendChild(svgElement);
-//   buttonElement.appendChild(svgWrapper);
-//   wrapperEyeIcon.appendChild(buttonElement);
+  const svgElement = document.createElement("img");
+  svgElement.src = "images/eye.svg";
+  svgElement.alt = "Eye";
 
-//   input.appendChild(wrapperEyeIcon);
-//   passInputWrapper.appendChild(input);
+  svgWrapper.appendChild(svgElement);
+  buttonElement.appendChild(svgWrapper);
+  wrapperEyeIcon.appendChild(buttonElement);
 
-//   const children = [labelElementPass, passInputWrapper];
-//   wrapper.replaceChildren(...children);
+  inputWrapper.appendChild(wrapperEyeIcon);
+  passInputWrapper.appendChild(inputWrapper);
 
-//   form.appendChild(wrapper);
-//   return input;
+  const children = [labelElement, passInputWrapper];
+  wrapper.replaceChildren(...children);
+
+  const returnObjects = {
+    input: input,
+    passwordGroup: wrapper,
+  };
+  return returnObjects;
+}
+
+//   wrapper.append(labelElement, inputObjects.inputWrapper);
+//   const returnObjects = {
+//     input: inputObjects.input,
+//     textFieldGroup: wrapper,
+//   };
+//   return returnObjects;
 // }
 
 // function renderCountryField({
@@ -934,9 +960,9 @@ function renderLabelElement(name, label) {
 }
 
 function renderInputGroup({ name, type, autocomplete, placeholder }) {
-  const inputWrapper = document.createElement("div");
-  inputWrapper.className = "air3-input-group";
-  stampScopedAttr(inputWrapper);
+  const wrapper = document.createElement("div");
+  wrapper.className = "air3-input-group";
+  stampScopedAttr(wrapper);
 
   const input = document.createElement("input");
   input.className = "air3-input";
@@ -946,9 +972,9 @@ function renderInputGroup({ name, type, autocomplete, placeholder }) {
   if (autocomplete) input.autocomplete = autocomplete;
   if (placeholder) input.placeholder = placeholder;
   stampScopedAttr(input);
-  inputWrapper.appendChild(input);
+  wrapper.appendChild(input);
 
-  const objects = { input, inputWrapper };
+  const objects = { input, wrapper };
   return objects;
 }
 
