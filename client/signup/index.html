@@ -6,78 +6,156 @@
     <script type="module" src="./source/ui.js"></script>
     <title>Create an account to book expedition guides</title>
     <link rel="stylesheet" href="star-gps-signup.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body theme="air-3-0">
+    <!-- Nav only: this container is position:fixed — do NOT put page content here -->
     <div class="microapp-slot-top">
-      <div class="ma-scope_visitor-skinny" id="visitor-skinny-app-container">
-        <header></header>
-        <div class="layout">
-          <div class="visitor-skinny-app-loader"></div>
-          <main id="main">
-            <div>
-              <div
-                class="container air3-grid-container"
-                id="signup-redesigned-form"
-              >
-                <div class="sr-only" id="loading-status"></div>
-                <div class="page-container">
-                  <div class="page-card mt-8x my-md-10x mb-0 mb-md-10x py-0">
-                    <h2 class="text-center display-rebrand my-6x">
-                      <div>
-                        <span>Sign up to guide</span>
-                      </div>
-                    </h2>
-                    <div class="text-center"></div>
-                    <div class="air3-grid-container my-6x my-md-10x col-gap-4x">
-                      <div class="span-12 span-md-6 sso-button-container">
-                        <button
-                          class="air3-btn mr-0 apple-sso-button full-width mb-0 air3-btn-primary p-0"
-                          type="button"
+      <div
+        class="ma-scope_visitor-skinny"
+        data-app="visitor-skinny"
+        id="visitor-skinny-app-container"
+        theme="air-3-0"
+      >
+        <header
+          class="nav-scrolled-top"
+          data-internal-app="visitor-skinny"
+          data-qa="visitor-skinny-nav"
+          id="visitor-skinny-nav"
+        >
+          <div class="visitor-skinny-nav-header">
+            <a
+              class="up-n-link nav-brand"
+              data-cy="brand"
+              href="https://www.example.com/"
+              target="_self"
+            >
+              <span class="sr-only">StarGPS home</span>
+              <span class="nav-logo">
+                <img src="images/stargps-logo.png" alt="StarGPS" />
+              </span>
+            </a>
+          </div>
+          <div class="visitor-skinny-nav-center"></div>
+          <nav aria-label="Primary">
+            <ul class="visitor-skinny-nav-right">
+              <li>
+                <span class="nav-d-none nav-d-lg-inline">Looking for work?</span>
+                <a
+                  class="up-n-link nav-air3-btn nav-air3-btn-link nav-d-none nav-d-lg-inline-flex pr-0"
+                  href="https://www.example.com/nx/signup/?dest=home"
+                >
+                  Apply as talent
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <!-- Page content must be a sibling of the fixed nav, not a child -->
+    <div id="__nuxt">
+      <div id="__layout">
+        <div class="layout-container">
+          <div class="layout">
+            <div class="visitor-skinny-app-loader"></div>
+            <main id="main" tabindex="-1">
+              <div>
+                <div
+                  class="container air3-grid-container"
+                  data-v-27736af6=""
+                  id="signup-redesigned-form"
+                >
+                  <div
+                    aria-live="polite"
+                    class="sr-only"
+                    data-v-27736af6=""
+                    id="loading-status"
+                    role="status"
+                  ></div>
+                  <div class="page-container" data-v-27736af6="">
+                    <div
+                      class="page-card mt-8x my-md-10x mb-0 mb-md-10x py-0"
+                      data-v-27736af6=""
+                    >
+                      <h2
+                        class="text-center display-rebrand my-6x"
+                        data-v-27736af6=""
+                      >
+                        <div data-v-27736af6="">
+                          <span data-v-27736af6="">Sign up to guide</span>
+                        </div>
+                      </h2>
+                      <div class="text-center" data-v-27736af6=""></div>
+                      <div data-v-27736af6="">
+                        <div
+                          class="air3-grid-container my-6x my-md-10x col-gap-4x"
+                          data-v-27736af6=""
                         >
-                          <div class="mr-2x air3-icon sm">
-                            <img src="images/apple-logo-signup.svg" alt="Apple" />
+                          <div
+                            class="span-12 span-md-6 sso-button-container"
+                            data-v-27736af6=""
+                          >
+                            <button
+                              class="air3-btn mr-0 apple-sso-button full-width mb-0 air3-btn-primary p-0"
+                              data-v-27736af6=""
+                              type="button"
+                            >
+                              <div class="mr-2x air3-icon sm">
+                                <img
+                                  src="images/apple-logo-signup.svg"
+                                  alt="Apple"
+                                />
+                              </div>
+                              <span>Continue with Apple</span>
+                            </button>
                           </div>
-                          <span>Continue with Apple</span>
-                        </button>
-                      </div>
-                      <div class="span-12 sso-button-container span-md-6">
-                        <div>
-                          <div>
-                            <div id="up_gsi_button">
-                              <button class="google-sso-static" type="button">
-                                <span class="google-sso-static-logo">
-                                  <img
-                                    src="images/google-logo-signup.svg"
-                                    alt="Google"
-                                  />
-                                </span>
-                                <span>Continue with Google</span>
-                              </button>
+                          <div
+                            class="span-12 sso-button-container span-md-6"
+                            data-v-27736af6=""
+                          >
+                            <div data-v-27736af6="">
+                              <div>
+                                <div id="up_gsi_button">
+                                  <button
+                                    class="google-sso-static"
+                                    type="button"
+                                  >
+                                    <span class="google-sso-static-logo">
+                                      <img
+                                        src="images/google-logo-signup.svg"
+                                        alt="Google"
+                                      />
+                                    </span>
+                                    <span>Continue with Google</span>
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <p
+                          class="google-sso-separator my-6x"
+                          data-v-27736af6=""
+                        >
+                          <span class="p-0 px-3x" data-v-27736af6=""> or </span>
+                        </p>
                       </div>
-                    </div>
-                    <p class="google-sso-separator my-6x">
-                      <span class="p-0 px-3x"> or </span>
-                    </p>
 
-                    <!--Start Name Container-->
-                    <form id="signupForm-redesigned">
-                      <div>
-                        <label for="first-name-input">First Name</label>
-                        <input id="clientName" name="clientName" />
-                      </div>
-                      <div>
-                        <input type="submit" />
-                      </div>
-                    </form>
+                      <form data-v-27736af6="" id="signupForm-redesigned"></form>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </main>
+            </main>
+          </div>
         </div>
       </div>
     </div>
