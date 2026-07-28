@@ -17,14 +17,14 @@ const setupForm = () => {
 
   const firstNameLabel = renderLabelElement("first-name", "First name");
 
-  const firstNameInput = renderInputGroup({
+  var {input: firstNameInput, inputWrapper: firstNameInputWrapper} = renderInputGroup({
     name: "first-name",
     type: "text",
     autocomplete: "given-name",
     placeholder: "Jon",
   });
 
-  firstName.append(firstNameLabel, firstNameInput);
+  firstName.append(firstNameLabel, firstNameInputWrapper);
 
   // Last Name
   const lastName = document.createElement("div");
@@ -33,14 +33,14 @@ const setupForm = () => {
 
   const lastNameLabel = renderLabelElement("last-name", "Last name");
 
-  const lastNameInput = renderInputGroup({
+  var {input: lastNameInput, inputWrapper: lastNameInputWrapper} = renderInputGroup({
     name: "last-name",
     type: "text",
     autocomplete: "family-name",
     placeholder: "Doe",
   });
 
-  lastName.append(lastNameLabel, lastNameInput);
+  lastName.append(lastNameLabel, lastNameInputWrapper);
 
   nameElement.append(firstName, lastName);
   form.appendChild(nameElement);
@@ -52,7 +52,7 @@ const setupForm = () => {
 
   const emailLabel = renderLabelElement("email", "Work email address");
 
-  const emailInput = renderInputGroup({
+  var {input: emailInput, inputWrapper: emailInputWrapper} = renderInputGroup({
     name: "email",
     type: "email",
     autocomplete: "email",
@@ -99,9 +99,9 @@ const setupForm = () => {
     event.preventDefault();
 
     const response = await createProfileOnApi({
-      givenName: firstNameInput.querySelector("input").value,
-      familyName: lastNameInput.querySelector("input").value,
-      email: emailInput.querySelector("input").value,
+      givenName: firstNameInput.value,
+      familyName: lastNameInput.value,
+      email: emailInput.value,
       //   password: passwordElementInput.value,
       //   country: countryElementInput.value,
       //   termsAccept: termsElementInput.checked,
@@ -891,7 +891,8 @@ function renderInputGroup({ name, type, autocomplete, placeholder }) {
   stampScopedAttr(input);
   inputWrapper.appendChild(input);
 
-  return inputWrapper;
+  const objects = { input, inputWrapper };
+  return objects;
 }
 
 function stampScopedAttr(element) {
