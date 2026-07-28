@@ -1,25 +1,34 @@
 const url = "http://localhost:5184";
 
-export const loadProjectsFromApi = async ()=> {
-    const response = await fetch(url + "/projects");
-    const body = await response.json();
-    return body;
-}
+export const createProfileOnApi = async ({
+   givenName,
+   familyName,
+   email,
+   password,
+   country,
+   termsAccept,
+   isGuide,
+}) => {
+   const newProfile = {
+      created: Date.now(),
+      givenName,
+      familyName,
+      email,
+      password,
+      country,
+      termsAccept,
+      isGuide,
+   };
+   console.log("newProfile created:", newProfile);
 
-export const createProjectOnApi = async (title) => {
-   const newProject = {
-    done: false,
-    title: title,
-    created: Date.now()
-   }
-   console.log(newProject);
+   const response = await fetch(url + "/signup", {
+      method: "POST",
+      body: JSON.stringify(newProfile),
+      headers: {
+         "Content-Type": "application/json",
+      },
+   });
 
-   await fetch(url + "/project", {
-     method: "POST",
-     body: JSON.stringify(newProject),
-     headers: {
-        'Content-Type': 'application/json'
-     }
-   })
-}
-// project: sting title, datetime created, bool done
+   console.log("createProfileOnApi fetch completed:", response.status, response.statusText);
+   return response;
+};
