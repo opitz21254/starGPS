@@ -48,38 +48,39 @@ const setupForm = () => {
     wrapperClasses: ["mt-3x", "mt-md-6x"],
   });
   form.appendChild(password);
-  
+
   // Create Country Row
   //   const countryElement = renderCountryField({
-    //     name: "country",
-    //     label: "Country",
-    //     autocomplete: "country",
-    //     placeholder: "",
-    //     wrapperClasses: ["mt-3x", "mt-md-6x", "mb-3x"],
+  //     name: "country",
+  //     label: "Country",
+  //     autocomplete: "country",
+  //     placeholder: "",
+  //     wrapperClasses: ["mt-3x", "mt-md-6x", "mb-3x"],
   //   });
-  
-    const submitElement = renderSubmitButton();
+
+
+  //   Create User Agreement Acknowledgement
+  const termsElement = renderTermsCheckbox();
+    form.appendChild(termsElement);
+
+  //   Create "Create my account" button
+  const submitElement = renderSubmitButton();
     form.appendChild(submitElement);
 
-  // Create User Agreement Acknowledgement
-  //   const termsElement = renderTermsCheckbox();
-  
-  // Create "Create my account" button
-  //   const submitElement = renderSubmitButton();
-  
-  // // Create "Apply as talent" / "Log In" links
-  // const hatchElement = renderSignupTypeHatch();
+  // Create "Apply as talent" / "Log In" linksD
+  const hatchElement = renderSignupTypeHatch();
+    form.appendChild(hatchElement);
 
-//   const form = document.getElementById("signupForm-redesigned");
-//   form.replaceChildren(
-//     nameGroup,
-//     email,
-//     passwordGroup,
-//     // countryElement,
-//     // termsElement,
-//     submitElement,
-//     // hatchElement,
-//   );
+  //   const form = document.getElementById("signupForm-redesigned");
+  //   form.replaceChildren(
+  //     nameGroup,
+  //     email,
+  //     passwordGroup,
+  //     // countryElement,
+      // termsElement,
+  //     submitElement,
+  //     // hatchElement,
+  //   );
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -771,79 +772,79 @@ function renderPasswordField({
 //   });
 // }
 
-// function renderTermsCheckbox() {
-//   const group = document.createElement("div");
-//   addClasses(group, [
-//     "air3-checkbox-group",
-//     "page-terms-checkboxes",
-//     "mt-3x",
-//     "mt-md-6x",
-//   ]);
-//   group.setAttribute("aria-labelledby", "checkbox-group-1");
-//   group.setAttribute("data-ev-sublocation", "!checkbox_group");
-//   group.role = "group";
-//   group.style.setProperty("--checkbox-group-gap", "0");
-//   stampScopedAttr(group);
+function renderTermsCheckbox() {
+  const group = document.createElement("div");
+  addClasses(group, [
+    "air3-checkbox-group",
+    "page-terms-checkboxes",
+    "mt-3x",
+    "mt-md-6x",
+  ]);
+  group.setAttribute("aria-labelledby", "checkbox-group-1");
+  group.setAttribute("data-ev-sublocation", "!checkbox_group");
+  group.role = "group";
+  group.style.setProperty("--checkbox-group-gap", "0");
+  stampScopedAttr(group);
 
-//   const groupLabel = document.createElement("div");
-//   groupLabel.id = "checkbox-group-1";
+  const groupLabel = document.createElement("div");
+  groupLabel.id = "checkbox-group-1";
 
-//   const label = document.createElement("label");
-//   addClasses(label, ["py-2x", "air3-checkbox-label"]);
-//   label.setAttribute("data-test", "checkbox-label");
-//   label.id = "checkbox-terms";
-//   stampScopedAttr(label);
+  const label = document.createElement("label");
+  addClasses(label, ["py-2x", "air3-checkbox-label"]);
+  label.setAttribute("data-test", "checkbox-label");
+  label.id = "checkbox-terms";
+  stampScopedAttr(label);
 
-//   const input = document.createElement("input");
-//   input.setAttribute("aria-describedby", "checkbox-terms-validation-messages");
-//   input.setAttribute("aria-required", "true");
-//   addClasses(input, ["air3-checkbox-input", "sr-only"]);
-//   input.name = "";
-//   input.type = "checkbox";
-//   input.value = "true";
+  const input = document.createElement("input");
+  input.setAttribute("aria-describedby", "checkbox-terms-validation-messages");
+  input.setAttribute("aria-required", "true");
+  addClasses(input, ["air3-checkbox-input", "sr-only"]);
+  input.name = "";
+  input.type = "checkbox";
+  input.value = "true";
 
-//   const fakeInput = document.createElement("span");
-//   fakeInput.className = "air3-checkbox-fake-input";
-//   fakeInput.setAttribute("data-test", "checkbox-input");
+  const fakeInput = document.createElement("span");
+  fakeInput.className = "air3-checkbox-fake-input";
+  fakeInput.setAttribute("data-test", "checkbox-input");
 
-//   const iconWrapper = document.createElement("div");
-//   addClasses(iconWrapper, ["air3-icon", "md"]);
-//   iconWrapper.setAttribute("data-test", "checkbox-icon");
+  const iconWrapper = document.createElement("div");
+  addClasses(iconWrapper, ["air3-icon", "md"]);
+  iconWrapper.setAttribute("data-test", "checkbox-icon");
 
-//   const checkboxIcon = document.createElement("img");
-//   checkboxIcon.className = "";
-//   checkboxIcon.src = "images/checkbox-icon.svg";
-//   checkboxIcon.alt = "Checkbox check mark";
+  const checkboxIcon = document.createElement("img");
+  checkboxIcon.className = "";
+  checkboxIcon.src = "images/checkbox-icon.svg";
+  checkboxIcon.alt = "Checkbox check mark";
 
-//   iconWrapper.appendChild(checkboxIcon);
-//   fakeInput.appendChild(iconWrapper);
+  iconWrapper.appendChild(checkboxIcon);
+  fakeInput.appendChild(iconWrapper);
 
-//   const text = document.createElement("span");
-//   stampScopedAttr(text);
-//   text.append(
-//     document.createTextNode("Yes, I understand and agree to the "),
-//     renderLegalLink("StarGPS Terms of Service"),
-//     document.createTextNode(", including the "),
-//     renderLegalLink("User Agreement"),
-//     document.createTextNode(" and "),
-//     renderLegalLink("Privacy Policy"),
-//     document.createTextNode("."),
-//   );
+  const text = document.createElement("span");
+  stampScopedAttr(text);
+  text.append(
+    document.createTextNode("Yes, I understand and agree to the "),
+    renderLegalLink("StarGPS Terms of Service"),
+    document.createTextNode(", including the "),
+    renderLegalLink("User Agreement"),
+    document.createTextNode(" and "),
+    renderLegalLink("Privacy Policy"),
+    document.createTextNode("."),
+  );
 
-//   label.append(input, fakeInput, text);
-//   group.append(groupLabel, label);
-//   return group;
-// }
+  label.append(input, fakeInput, text);
+  group.append(groupLabel, label);
+  return group;
+}
 
-// function renderLegalLink(label) {
-//   const link = document.createElement("a");
-//   link.className = "up-n-link";
-//   stampScopedAttr(link);
-//   link.href = "https://www.example.com/legal";
-//   link.target = "_blank";
-//   link.textContent = label;
-//   return link;
-// }
+function renderLegalLink(label) {
+  const link = document.createElement("a");
+  link.className = "up-n-link";
+  stampScopedAttr(link);
+  link.href = "https://www.example.com/legal";
+  link.target = "_blank";
+  link.textContent = label;
+  return link;
+}
 
 function renderSubmitButton() {
   const wrapper = document.createElement("div");
@@ -890,61 +891,61 @@ function renderSubmitButton() {
   return wrapper;
 }
 
-// function renderSignupTypeHatch() {
-//   const wrapper = document.createElement("div");
-//   addClasses(wrapper, ["text-center", "text-body", "mt-4x", "mb-6x"]);
-//   stampScopedAttr(wrapper);
+function renderSignupTypeHatch() {
+  const wrapper = document.createElement("div");
+  addClasses(wrapper, ["text-center", "text-body", "mt-4x", "mb-6x"]);
+  stampScopedAttr(wrapper);
 
-//   const outer = document.createElement("div");
-//   stampScopedAttr(outer);
+  const outer = document.createElement("div");
+  stampScopedAttr(outer);
 
-//   const inner = document.createElement("div");
+  const inner = document.createElement("div");
 
-//   const mobileHatch = document.createElement("div");
-//   mobileHatch.className = "d-lg-none";
-//   mobileHatch.setAttribute("data-qa", "signup-type-button-mobile-form-hatch");
+  const mobileHatch = document.createElement("div");
+  mobileHatch.className = "d-lg-none";
+  mobileHatch.setAttribute("data-qa", "signup-type-button-mobile-form-hatch");
 
-//   const mobileInner = document.createElement("div");
-//   const mobileText = document.createElement("span");
-//   mobileText.className = "text-body";
-//   mobileText.appendChild(document.createTextNode("Looking for work? "));
+  const mobileInner = document.createElement("div");
+  const mobileText = document.createElement("span");
+  mobileText.className = "text-body";
+  mobileText.appendChild(document.createTextNode("Looking for work? "));
 
-//   const applyButton = document.createElement("button");
-//   addClasses(applyButton, [
-//     "air3-btn",
-//     "air3-btn-link",
-//     "mb-0",
-//     "px-2x",
-//     "py-0",
-//   ]);
-//   applyButton.type = "button";
-//   applyButton.textContent = "Apply as talent";
+  const applyButton = document.createElement("button");
+  addClasses(applyButton, [
+    "air3-btn",
+    "air3-btn-link",
+    "mb-0",
+    "px-2x",
+    "py-0",
+  ]);
+  applyButton.type = "button";
+  applyButton.textContent = "Apply as talent";
 
-//   mobileText.appendChild(applyButton);
-//   mobileInner.appendChild(mobileText);
-//   mobileHatch.appendChild(mobileInner);
+  mobileText.appendChild(applyButton);
+  mobileInner.appendChild(mobileText);
+  mobileHatch.appendChild(mobileInner);
 
-//   const desktopHatch = document.createElement("div");
-//   addClasses(desktopHatch, ["d-none", "d-lg-block"]);
-//   desktopHatch.setAttribute("data-qa", "signup-type-button-pc-form-hatch");
+  const desktopHatch = document.createElement("div");
+  addClasses(desktopHatch, ["d-none", "d-lg-block"]);
+  desktopHatch.setAttribute("data-qa", "signup-type-button-pc-form-hatch");
 
-//   const desktopText = document.createElement("span");
-//   desktopText.className = "text-body";
-//   desktopText.appendChild(document.createTextNode("Already have an account? "));
+  const desktopText = document.createElement("span");
+  desktopText.className = "text-body";
+  desktopText.appendChild(document.createTextNode("Already have an account? "));
 
-//   const loginLink = document.createElement("a");
-//   loginLink.className = "up-n-link";
-//   loginLink.href = "https://www.example.com/ab/account-security/login";
-//   loginLink.textContent = "Log In";
+  const loginLink = document.createElement("a");
+  loginLink.className = "up-n-link";
+  loginLink.href = "https://www.example.com/ab/account-security/login";
+  loginLink.textContent = "Log In";
 
-//   desktopText.appendChild(loginLink);
-//   desktopHatch.appendChild(desktopText);
+  desktopText.appendChild(loginLink);
+  desktopHatch.appendChild(desktopText);
 
-//   inner.append(mobileHatch, desktopHatch);
-//   outer.appendChild(inner);
-//   wrapper.appendChild(outer);
-//   return wrapper;
-// }
+  inner.append(mobileHatch, desktopHatch);
+  outer.appendChild(inner);
+  wrapper.appendChild(outer);
+  return wrapper;
+}
 
 setupForm();
 
