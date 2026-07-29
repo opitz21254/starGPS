@@ -1,14 +1,14 @@
 import { countries } from "./domain.js";
 import { createProfileOnApi } from "./service.js";
 
-const setupForm = () => {
-  const form = document.getElementById("signupForm-redesigned");
+const initSignupForm = () => {
+  const form = document.getElementById("signup-form");
   form.replaceChildren();
 
   // Create Name Row
   const nameGroup = document.createElement("div");
-  nameGroup.className = "air3-grid-container name-inputs col-gap-4x";
-  stampScopedAttr(nameGroup);
+    nameGroup.className = "air3-grid-container name-inputs col-gap-4x";
+  applySignupStyleScope(nameGroup);
 
   var { input: firstNameInput, textFieldGroup: firstName } = renderTextField({
     name: "first-name",
@@ -67,9 +67,9 @@ const setupForm = () => {
   const submitElement = renderSubmitButton();
   form.appendChild(submitElement);
 
-  // Create "Apply as talent" / "Log In" linksD
-  const hatchElement = renderSignupTypeHatch();
-  form.appendChild(hatchElement);
+  // Create "Apply as talent" / "Log In" links
+  const alternateLinks = renderSignupAlternateLinks();
+  form.appendChild(alternateLinks);
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -99,7 +99,7 @@ function renderTextField({
 }) {
   const wrapper = document.createElement("div");
   addClasses(wrapper, wrapperClasses);
-  stampScopedAttr(wrapper);
+  applySignupStyleScope(wrapper);
 
   const labelElement = renderLabelElement(name, label);
 
@@ -111,11 +111,10 @@ function renderTextField({
   });
 
   wrapper.append(labelElement, inputWrapper);
-  const returnObjects = {
+  return {
     input: input,
     textFieldGroup: wrapper,
   };
-  return returnObjects;
 }
 
 function renderPasswordField({
@@ -128,7 +127,7 @@ function renderPasswordField({
 }) {
   const wrapper = document.createElement("div");
   addClasses(wrapper, wrapperClasses);
-  stampScopedAttr(wrapper);
+  applySignupStyleScope(wrapper);
 
   const labelElement = renderLabelElement(name, label);
 
@@ -142,8 +141,8 @@ function renderPasswordField({
   inputWrapper.className = "air3-input-group is-appended";
 
   const passInputWrapper = document.createElement("div");
-  stampScopedAttr(passInputWrapper);
-  passInputWrapper.setAttribute("has-icon", "true");
+  applySignupStyleScope(passInputWrapper);
+  passInputWrapper.classList.add("has-icon");
 
   const wrapperEyeIcon = document.createElement("div");
   wrapperEyeIcon.className = "air3-input-append";
@@ -151,7 +150,7 @@ function renderPasswordField({
   const buttonElement = document.createElement("button");
   buttonElement.setAttribute("aria-checked", "false");
   buttonElement.setAttribute("aria-label", "Show password");
-  stampScopedAttr(buttonElement);
+  applySignupStyleScope(buttonElement);
   buttonElement.role = "switch";
 
   buttonElement.style.display = "inline-flex";
@@ -166,7 +165,7 @@ function renderPasswordField({
 
   const svgWrapper = document.createElement("div");
   addClasses(svgWrapper, ["air3-icon", "md"]);
-  stampScopedAttr(svgWrapper);
+  applySignupStyleScope(svgWrapper);
 
   const svgElement = document.createElement("img");
   svgElement.src = "images/eye.svg";
@@ -182,11 +181,10 @@ function renderPasswordField({
   const children = [labelElement, passInputWrapper];
   wrapper.replaceChildren(...children);
 
-  const returnObjects = {
+  return {
     input: input,
     passwordGroup: wrapper,
   };
-  return returnObjects;
 }
 
 function renderCountryField({
@@ -198,24 +196,24 @@ function renderCountryField({
 }) {
   const wrapper = document.createElement("div");
   addClasses(wrapper, wrapperClasses);
-  stampScopedAttr(wrapper);
+  applySignupStyleScope(wrapper);
 
   const labelElement = renderLabelElement(name, label);
   labelElement.removeAttribute("for");
   labelElement.id = "select-a-country";
 
-  const contInputGroup = document.createElement("div");
-  stampScopedAttr(contInputGroup);
-  addClasses(contInputGroup, [
+  const countryDropdown = document.createElement("div");
+  applySignupStyleScope(countryDropdown);
+  addClasses(countryDropdown, [
     "d-block",
     "country-dropdown",
     "air3-dropdown",
     "is-min-width",
     "is-desktop",
   ]);
-  contInputGroup.id = "country-dropdown";
-  contInputGroup.setAttribute("data-ev-sublocation", "!dropdown");
-  contInputGroup.setAttribute("theme", "air-3-0");
+  countryDropdown.id = "country-dropdown";
+  countryDropdown.setAttribute("data-ev-sublocation", "!dropdown");
+  countryDropdown.setAttribute("theme", "air-3-0");
 
   const dropdownToggle = document.createElement("div");
   addClasses(dropdownToggle, ["air3-dropdown-toggle", "is-selected"]);
@@ -265,22 +263,21 @@ function renderCountryField({
   hiddenInput.value = initialCountry.id;
   hiddenInput.autocomplete = autocomplete || "country";
 
-  contInputGroup.append(dropdownToggle, hiddenInput);
-  wrapper.append(labelElement, contInputGroup);
+  countryDropdown.append(dropdownToggle, hiddenInput);
+  wrapper.append(labelElement, countryDropdown);
 
   bindCountryDropdown({
-    root: contInputGroup,
+    root: countryDropdown,
     toggle: dropdownToggle,
     toggleLabel,
     hiddenInput,
     initialCountry,
   });
 
-  const returnObjects = {
+  return {
     input: hiddenInput,
     countryGroup: wrapper,
   };
-  return returnObjects;
 }
 
 function bindCountryDropdown({
@@ -708,7 +705,7 @@ function renderTermsCheckbox() {
   group.setAttribute("data-ev-sublocation", "!checkbox_group");
   group.role = "group";
   group.style.setProperty("--checkbox-group-gap", "0");
-  stampScopedAttr(group);
+  applySignupStyleScope(group);
 
   const groupLabel = document.createElement("div");
   groupLabel.id = "checkbox-group-1";
@@ -717,7 +714,7 @@ function renderTermsCheckbox() {
   addClasses(label, ["py-2x", "air3-checkbox-label"]);
   label.setAttribute("data-test", "checkbox-label");
   label.id = "checkbox-terms";
-  stampScopedAttr(label);
+  applySignupStyleScope(label);
 
   const input = document.createElement("input");
   input.setAttribute("aria-describedby", "checkbox-terms-validation-messages");
@@ -744,7 +741,7 @@ function renderTermsCheckbox() {
   fakeInput.appendChild(iconWrapper);
 
   const text = document.createElement("span");
-  stampScopedAttr(text);
+  applySignupStyleScope(text);
   text.append(
     document.createTextNode("Yes, I understand and agree to the "),
     renderLegalLink("StarGPS Terms of Service"),
@@ -758,17 +755,16 @@ function renderTermsCheckbox() {
   label.append(input, fakeInput, text);
   group.append(groupLabel, label);
 
-  const returnObjects = {
+  return {
     input: input,
     termsGroup: group,
   };
-  return returnObjects;
 }
 
 function renderLegalLink(label) {
   const link = document.createElement("a");
   link.className = "up-n-link";
-  stampScopedAttr(link);
+  applySignupStyleScope(link);
   link.href = "https://www.example.com/legal";
   link.target = "_blank";
   link.textContent = label;
@@ -778,7 +774,7 @@ function renderLegalLink(label) {
 function renderSubmitButton() {
   const wrapper = document.createElement("div");
   addClasses(wrapper, ["text-center", "mt-6x", "mt-md-10x"]);
-  stampScopedAttr(wrapper);
+  applySignupStyleScope(wrapper);
 
   const button = document.createElement("button");
   addClasses(button, ["air3-btn", "air3-btn-primary", "air3-btn-block-sm"]);
@@ -787,13 +783,13 @@ function renderSubmitButton() {
     '{"email":null,"accountType":"client","isSSORegistrant":false,"ssoProvider":null}',
   );
   button.setAttribute("data-ev-label", "create_my_account");
-  stampScopedAttr(button);
+  applySignupStyleScope(button);
   button.id = "button-submit-form";
   button.type = "submit";
 
   const spinnerWrapper = document.createElement("div");
   addClasses(spinnerWrapper, ["air3-icon", "sm"]);
-  stampScopedAttr(spinnerWrapper);
+  applySignupStyleScope(spinnerWrapper);
   spinnerWrapper.style.display = "none";
 
   const spinner = document.createElement("img");
@@ -806,13 +802,13 @@ function renderSubmitButton() {
   srStatus.setAttribute("aria-atomic", "true");
   srStatus.setAttribute("aria-live", "polite");
   srStatus.className = "sr-only";
-  stampScopedAttr(srStatus);
+  applySignupStyleScope(srStatus);
   srStatus.role = "status";
   srStatus.textContent = "Create my account";
 
   const visibleLabel = document.createElement("span");
   visibleLabel.setAttribute("aria-hidden", "true");
-  stampScopedAttr(visibleLabel);
+  applySignupStyleScope(visibleLabel);
   visibleLabel.textContent = "Create my account";
 
   button.append(spinnerWrapper, srStatus, visibleLabel);
@@ -820,19 +816,19 @@ function renderSubmitButton() {
   return wrapper;
 }
 
-function renderSignupTypeHatch() {
+function renderSignupAlternateLinks() {
   const wrapper = document.createElement("div");
   addClasses(wrapper, ["text-center", "text-body", "mt-4x", "mb-6x"]);
-  stampScopedAttr(wrapper);
+  applySignupStyleScope(wrapper);
 
   const outer = document.createElement("div");
-  stampScopedAttr(outer);
+  applySignupStyleScope(outer);
 
   const inner = document.createElement("div");
 
-  const mobileHatch = document.createElement("div");
-  mobileHatch.className = "d-lg-none";
-  mobileHatch.setAttribute("data-qa", "signup-type-button-mobile-form-hatch");
+  const mobileLinks = document.createElement("div");
+  mobileLinks.className = "d-lg-none";
+  mobileLinks.setAttribute("data-qa", "signup-alternate-links-mobile");
 
   const mobileInner = document.createElement("div");
   const mobileText = document.createElement("span");
@@ -852,11 +848,11 @@ function renderSignupTypeHatch() {
 
   mobileText.appendChild(applyButton);
   mobileInner.appendChild(mobileText);
-  mobileHatch.appendChild(mobileInner);
+  mobileLinks.appendChild(mobileInner);
 
-  const desktopHatch = document.createElement("div");
-  addClasses(desktopHatch, ["d-none", "d-lg-block"]);
-  desktopHatch.setAttribute("data-qa", "signup-type-button-pc-form-hatch");
+  const desktopLinks = document.createElement("div");
+  addClasses(desktopLinks, ["d-none", "d-lg-block"]);
+  desktopLinks.setAttribute("data-qa", "signup-alternate-links-desktop");
 
   const desktopText = document.createElement("span");
   desktopText.className = "text-body";
@@ -868,15 +864,15 @@ function renderSignupTypeHatch() {
   loginLink.textContent = "Log In";
 
   desktopText.appendChild(loginLink);
-  desktopHatch.appendChild(desktopText);
+  desktopLinks.appendChild(desktopText);
 
-  inner.append(mobileHatch, desktopHatch);
+  inner.append(mobileLinks, desktopLinks);
   outer.appendChild(inner);
   wrapper.appendChild(outer);
   return wrapper;
 }
 
-setupForm();
+initSignupForm();
 
 // Helper Methods
 
@@ -885,14 +881,14 @@ function renderLabelElement(name, label) {
   labelElement.className = "mb-1x";
   labelElement.htmlFor = `${name}-input`;
   labelElement.textContent = label;
-  stampScopedAttr(labelElement);
+  applySignupStyleScope(labelElement);
   return labelElement;
 }
 
 function renderInputGroup({ name, type, autocomplete, placeholder }) {
   const wrapper = document.createElement("div");
   wrapper.className = "air3-input-group";
-  stampScopedAttr(wrapper);
+  applySignupStyleScope(wrapper);
 
   const input = document.createElement("input");
   input.className = "air3-input";
@@ -901,16 +897,15 @@ function renderInputGroup({ name, type, autocomplete, placeholder }) {
   input.type = type;
   if (autocomplete) input.autocomplete = autocomplete;
   if (placeholder) input.placeholder = placeholder;
-  stampScopedAttr(input);
+  applySignupStyleScope(input);
   wrapper.appendChild(input);
 
-  const objects = { input, wrapper };
-  return objects;
+  return { input, wrapper };
 }
 
-function stampScopedAttr(element) {
-  // Matches Vue scoped CSS selectors like .page-container[data-v-27736af6]
-  element.setAttribute("data-v-27736af6", "");
+function applySignupStyleScope(element) {
+  // Matches scoped CSS selectors like .page-container[data-signup-scope]
+  element.setAttribute("data-signup-scope", "");
 }
 
 function addClasses(element, classes) {
