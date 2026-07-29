@@ -1,38 +1,41 @@
-Console.WriteLine("Hello World!");
+using System.Text.Json;
 
-personalProfileHandler myProfile = new(121212, "brennan", "opitz", "1@gmail.com", "pass1234", 131313, true, Role.Guide);
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors();
 
-Console.WriteLine($"Added User: {myProfile.givenName}");
+var app = builder.Build();
+app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
+var profileList = new List<singleProfile>();
 
-// using System.Text.Json;
-
-// var builder = WebApplication.CreateBuilder(args);
-// builder.Services.AddCors();
-
-// var app = builder.Build();
-// app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
-
-// var projectList = new List<MyProject>();
-
-// if(File.Exists("projectList.json"))
-// {
-//     var fileContents = File.ReadAllText("projectList.json");
-//     projectList = JsonSerializer.Deserialize<List<MyProject>>(fileContents);
-// }
+if (File.Exists("UserConfig.txt"))
+{
+    // string[][] fileContents = singleProfile.dataReader();
+    // projectList = JsonSerializer.Deserialize<List<MyProject>>(fileContents);
+}
 
 // app.MapGet("/projects", () =>
 //  {
 //      return projectList;
 //  });
 
-// app.MapPost("/project", (MyProject newProject) => {
-//     projectList.Add(newProject);
-//     Console.WriteLine("Added project to list");
+app.MapPost("/signup", (singleProfile newProfile) =>
+{
+    var profiles = new manageProfiles();
+    bool added = profiles.addProfile(
+        newProfile.createdDate,
+        newProfile.givenName,
+        newProfile.familyName,
+        newProfile.email,
+        newProfile.password,
+        newProfile.countryCode,
+        newProfile.termsAccept,
+        (int)newProfile.isGuideRole
+    );
 
-//     File.WriteAllText("projectlist.json", JsonSerializer.Serialize(projectList));
-// });
+    return added
+           ? Results.Ok(new { success = true })
+           : Results.StatusCode(500);
+});
 
-// app.Run();
-
-// public record MyProject(bool Done, string Title, long Created);
+app.Run();
