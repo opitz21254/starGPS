@@ -904,7 +904,6 @@ function renderInputGroup({ name, type, autocomplete, placeholder }) {
 }
 
 function applySignupStyleScope(element) {
-  // Matches scoped CSS selectors like .page-container[data-signup-scope]
   element.setAttribute("data-signup-scope", "");
 }
 
