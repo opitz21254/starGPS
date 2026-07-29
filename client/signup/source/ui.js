@@ -79,9 +79,9 @@ const setupForm = () => {
       familyName: lastNameInput.value,
       email: emailInput.value,
       password: passwordInput.value,
-      country: countryInput.value,
+      countryCode: countryInput.value,
       termsAccept: termsInput.checked,
-      isGuide: true,
+      isGuideRole: true,
     });
 
     console.log("createProfileOnApi response:", response.status, response.ok);

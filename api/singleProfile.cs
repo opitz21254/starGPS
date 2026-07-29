@@ -1,7 +1,7 @@
 public class singleProfile
 {
-    private int _createdDate;
-    public int createdDate
+    private long _createdDate;
+    public long createdDate
     {
         get => _createdDate;
         set => _createdDate = value;
@@ -56,7 +56,7 @@ public class singleProfile
         set => _isGuideRole = value;
     }
 
-    public singleProfile(int createdDate, string givenName, string familyName, string email, string password, int countryCode, bool termsAccept, Role isGuideRole)
+    public singleProfile(long createdDate, string givenName, string familyName, string email, string password, int countryCode, bool termsAccept, Role isGuideRole)
     {
         _createdDate = createdDate;
         _givenName = givenName;

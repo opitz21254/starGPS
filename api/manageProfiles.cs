@@ -2,7 +2,7 @@ public class manageProfiles
 {
     const int FieldCount = 8;
 
-    public bool addProfile(int createdDate, string givenName, string familyName, string email, string password, int countryCode, bool termsAccept, int guideRoleInt)
+    public bool addProfile(double createdDate, string givenName, string familyName, string email, string password, int countryCode, bool termsAccept, int guideRoleInt)
     {
         string[,] profileArrays = dataReader();
         string[] newProfileArray =
@@ -41,6 +41,11 @@ public class manageProfiles
 
     private string[,] dataReader()
     {
+        if (!File.Exists("UserConfig.txt"))
+        {
+            return new string[0, FieldCount];
+        }
+
         string userDataText = File.ReadAllText("UserConfig.txt");
         string[] profileStrings = profileSplitter(userDataText);
 
